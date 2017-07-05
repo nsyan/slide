@@ -1,0 +1,6 @@
+theme : moon
+highlight : monokai
+slide-number: true
+vertical-center : false
+transition : fade
+theme-override : css/PITCHME.css
