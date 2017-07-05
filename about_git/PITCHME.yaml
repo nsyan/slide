@@ -1,6 +1,13 @@
-theme : moon
+# black, moon, night, beige, sky, white
+theme : night
 highlight : monokai
 slide-number: true
-vertical-center : false
+# convex, concave, default, fade, none, slide, zoom
 transition : fade
 theme-override : css/PITCHME.css
+vertical-center : true
+# assets/logo.png
+logo :
+# "© 2016 One Tap Beyond Inc."
+footnote : ""
+
