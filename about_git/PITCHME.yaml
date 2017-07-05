@@ -2,7 +2,7 @@ highlight : monokai
 slide-number: true
 # convex, concave, default, fade, none, slide, zoom
 transition : slide
-theme-override : assets/css/PITCHME.css
+# theme-override : assets/css/PITCHME.css
 # assets/logo.png
 logo :
 # "© 2016 One Tap Beyond Inc."
