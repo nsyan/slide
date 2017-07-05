@@ -1,10 +1,9 @@
 # black, moon, night, beige, sky, white
-theme : night
+# theme : night
 highlight : monokai
 slide-number: true
 # convex, concave, default, fade, none, slide, zoom
 transition : fade
-theme-override : assets/css/PITCHME.css
 vertical-center : true
 # assets/logo.png
 logo :
