@@ -4,12 +4,23 @@
 .reveal h2,
 .reveal h3,
 .reveal h4 {
-    color: #e49436;
     text-transform: none;
 }
 
-.reveal h1:first-letter {color: #e49436;}
+.reveal h1:first-letter {
+    color: #e49436;
+}
 
-.reveal pre code {color: #ddd;}
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+    color: #e49436;
+}
 
-.reveal code {color: #f92672;}
+.reveal pre code {
+    color: #ddd;
+}
+
+.reveal code {
+    color: #f92672;
+}
