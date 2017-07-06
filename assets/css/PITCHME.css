@@ -1,12 +1,13 @@
 @charset "UTF-8";
 
-.reveal h1:first-letter,
-.reveal h2:first-letter,
-.reveal h3:first-letter,
-.reveal h4:first-letter {
-    color: #e49436;
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
     text-transform: none;
 }
+
+.reveal h1:first-letter {color: #e49436;}
 
 .reveal pre code {color: #ddd;}
 
