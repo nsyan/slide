@@ -66,7 +66,7 @@
 
 ---
 
-### 基本用語
+## 基本用語
 
 +++
 
@@ -218,21 +218,192 @@ Gitの様々な設定
 +++
 
 - ベーシックなフロー  
-`clone, branch, checkout, status, add, commit, fetch, pull, push`
-- マージとコンフリクトの解消: `merge`
-- タグを付ける: `tag`
-- 空コミットでコメント: `commit`
-- ローカルの変更を無視: `update-index`
-- ファイルを管理対象から外す: `rm`
+`clone, branch, checkout, status, add, commit, push, fetch, pull`
 
 +++
 
-- ローカルの変更を一時的に保存: `stash`
+```
+git clone
+git checkout -b hoge  // ブランチを作成してチェックアウト
+git add .  // .gitignoreで指定されたファイル以外のすべてのファイルをステージ
+git commit
+git push
+```
+
++++
+
+### ターミナルのショートカット
+- tab: 補完（コマンド、ブランチ名、--オプション）
+- ↑↓: コマンド履歴
+- cmd+k: ターミナルの履歴削除
+- その他たくさん
+- ターミナルに限らず効率化
+
++++
+
+- マージとコンフリクトの解消: `merge`
+    - \>\>\>, <<< で検索
+    - コンパイル後のminifyファイルでありがち<br>（js, css）
+
++++
+
+`自分以外の人と並行作業しているブランチ`でコンフリクトが起きた時は
+自分の判断だけで解消せず、必ずチーム（担当者）とすりあわせる。
+
++++
+
+- タグを付ける: `tag`
+    - コミットを参照しやすくするために、わかりやすい名前を付ける
+    - リリース時
+
++++
+
+```
+git tag tag1
+git push origin --tags
+```
+
++++
+
+- 空コミットでコメント: `commit`
+    - ファイルの変更なくコミットが可能
+    - ブランチに何かコメントを残したい時など
+
++++
+
+```
+git commit --allow-empty -m "大人の事情でペンディング"
+```
+
++++
+
+- 直前のコミット（メッセージ）を修正
+    - メッセージを間違えた、typoした
+    - addや修正が抜けてた
+
++++
+
+```
+git commit
+抜けてたことの対応
+git commit --amend  // 前のコミットに上書き
+```
+
++++
+
+- ローカルの変更を無視: `update-index`
+    - リモートにpushしたくないが、ローカルで変更したい場合
+    - 解除しないと無視し続けるので注意
+
++++
+
+```
+git update-index --assume-unchanged Gruntfile.js  // 無視
+git update-index --no-assume-unchanged Gruntfile.js  // 無視解除
+```
+
++++
+
+- ファイルを管理対象から外す: `rm`
+    - Gitで管理する必要がないファイル
+    - node_modules, .sass-cache など
+    - 基本的には.gitignoreされているはず
+
++++
+
+```
+git rm index.html  // ファイルも消える
+git rm --cached index.html  // ローカルにファイルは残る
+// 監理対象から外したというコミットをpush
+```
+
++++
+
+- ローカルの変更を一時的に退避: `stash`
+    - 作業途中にブランチを変更したい
+    - 急に差し込みが入った
+    - 今の内容を保存しつつ、別の変更をしたい
+
++++
+
+```
+error: Your local changes to the following files would be overwritten by checkout:
+Please commit your changes or stash them before you switch branches.
+Aborting
+```
+
++++
+
+```
+git stash save 'comment'  // 退避 saveは省略可
+git stash list  // 一覧表示
+git stash pop  // 復元（stashは消える）オプションで残せる
+git stash drop  // 退避を削除
+git stash clear  // 退避を全削除
+```
+
++++
+
 - ログを確認: `log`
-- ヘッドの履歴を確認: `reflog`
-- ブランチ間の差分を見る: `diff`
+
++++
+
+```
+git log --oneline --graph  // そこそこ見やすく
+```
+
++++
+
+- HEADの履歴を確認: `reflog`
+    - コミット履歴の一覧
+    - コミットメッセージの1行目（後述）
+
++++
+
+```
+git reflog
+git reset --hard HEAD@{1}  // 1つ前のHEADに戻す
+```
+
++++
+
+- 差分を見る: `diff`
+    - ブランチ間
+    - コミット間
+    - ファイル間
+
++++
+
+```
+git diff --cached  // HEADとインデックスの差分（add済
+git diff HEAD  // HEADとワーキングツリーの差分（add前
+git diff コミットID コミットID  // コミット間
+git diff ブランチA ブランチB  // ブランチ間
+git diff -w  // 改行コードや空白を無視
+```
+
++++
+
 - ワークツリー・インデックスを元に戻す: `reset`
+    - \-\-hard：全て戻す（ファイルも）
+    - \-\-mixed（オプションなし）：commitとaddの取り消し
+    - \-\-soft：commitのみ取り消し
+
++++
+
+```
+git reset --hard  // コミット前の変更をすべて取り消す
+git reset --soft HEAD^  // 直前のコミットのみ取り消す（コミット前に戻す）
+git reset  // addを取り消す
+git reset --hard HEAD^  // 直前のコミットを全て取り消す
+```
+
++++
+
 - 指定コミットを打ち消す: `revert`
+
++++
+
 - 特定のコミットのみ適用: `cherry-pick`
 
 ---
@@ -268,4 +439,3 @@ Gitの様々な設定
 +++
 
 これからの各ジャンルの課題において、Gitで色々やってみましょう。
-
