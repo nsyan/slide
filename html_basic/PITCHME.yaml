@@ -3,4 +3,4 @@ slide-number: true
 # convex, concave, default, fade, none, slide, zoom
 transition : slide
 theme-override : assets/css/PITCHME.css
-footnote : "© 2017"
+footnote : "© 2019"
